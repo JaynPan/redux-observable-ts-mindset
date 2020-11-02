@@ -1,12 +1,13 @@
+export const FETCH_POKEMON = 'FETCH_POKEMON';
 export const POKEMON_LOADING = 'POKEMON_LOADING';
-export const POKEMON_FAIL = 'POKEMON_FAIL';
-export const POKEMON_SUCCESS = 'POKEMON_SUCCESS';
+export const POKEMON_CANCELLED = 'POKEMON_CANCELLED';
+export const POKEMON_FULLFILLED = 'POKEMON_FULLFILLED';
 
 export type PokemonType = {
   abilities: PokemonAbility[];
   sprites: PokemonSprites;
   stats: PokemonStat[];
-};
+} | null;
 
 export type PokemonAbility = {
   ability: {
@@ -26,20 +27,26 @@ export type PokemonStat = {
   };
 };
 
-export interface PokemonLoading {
+export interface FetchPokemonI {
+  type: typeof FETCH_POKEMON;
+  payload: string;
+}
+
+export interface PokemonLoadingI {
   type: typeof POKEMON_LOADING;
 }
 
-export interface PokemonFail {
-  type: typeof POKEMON_FAIL;
+export interface FetchPokemonCancelledI {
+  type: typeof POKEMON_CANCELLED;
 }
 
-export interface PokemonSuccess {
-  type: typeof POKEMON_SUCCESS;
+export interface FetchPokemonFullfilledI {
+  type: typeof POKEMON_FULLFILLED;
   payload: PokemonType;
 }
 
 export type PokemonDispatchTypes =
-  | PokemonLoading
-  | PokemonFail
-  | PokemonSuccess;
+  | FetchPokemonI
+  | PokemonLoadingI
+  | FetchPokemonCancelledI
+  | FetchPokemonFullfilledI;

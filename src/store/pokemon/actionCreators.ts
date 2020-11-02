@@ -1,30 +1,25 @@
-import { Dispatch } from 'redux';
-import axios from 'axios';
 import {
-  POKEMON_FAIL,
-  POKEMON_LOADING,
-  POKEMON_SUCCESS,
-  PokemonDispatchTypes,
+  POKEMON_FULLFILLED,
+  POKEMON_CANCELLED,
+  FETCH_POKEMON,
+  PokemonType,
+  FetchPokemonFullfilledI,
+  FetchPokemonCancelledI,
+  FetchPokemonI,
 } from './actionTypes';
 
-// eslint-disable-next-line import/prefer-default-export
-export const GetPokemon = (pokemon: string) => async (
-  dispatch: Dispatch<PokemonDispatchTypes>,
-): Promise<void> => {
-  try {
-    dispatch({
-      type: POKEMON_LOADING,
-    });
+export const fetchPokemon = (index: string): FetchPokemonI => ({
+  type: FETCH_POKEMON,
+  payload: index,
+});
 
-    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+export const fetchPokemonFulfilled = (
+  data: PokemonType,
+): FetchPokemonFullfilledI => ({
+  type: POKEMON_FULLFILLED,
+  payload: data,
+});
 
-    dispatch({
-      type: POKEMON_SUCCESS,
-      payload: res.data,
-    });
-  } catch (e) {
-    dispatch({
-      type: POKEMON_FAIL,
-    });
-  }
-};
+export const fetchPokemonCancelled = (): FetchPokemonCancelledI => ({
+  type: POKEMON_CANCELLED,
+});
