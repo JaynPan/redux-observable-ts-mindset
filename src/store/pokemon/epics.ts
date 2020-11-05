@@ -8,7 +8,7 @@ import {
   FETCH_POKEMON,
   POKEMON_CANCELLED,
   PokemonDispatchTypes,
-  FetchPokemonFullfilledI,
+  FetchPokemonFulfilledI,
   PokemonType,
 } from './actionTypes';
 
@@ -18,7 +18,7 @@ export const fetchPokemonEpic: Epic<PokemonDispatchTypes> = (action$) =>
   action$.pipe(
     ofType(FETCH_POKEMON),
     mergeMap(
-      (action): Observable<FetchPokemonFullfilledI> =>
+      (action): Observable<FetchPokemonFulfilledI> =>
         from(
           ajax.getJSON(
             `https://pokeapi.co/api/v2/pokemon/${
@@ -27,7 +27,7 @@ export const fetchPokemonEpic: Epic<PokemonDispatchTypes> = (action$) =>
           ),
         ).pipe(
           map(
-            (response): FetchPokemonFullfilledI =>
+            (response): FetchPokemonFulfilledI =>
               fetchPokemonFulfilled(
                 response ? (response as PokemonType) : null,
               ),

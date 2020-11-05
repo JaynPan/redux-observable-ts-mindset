@@ -3,7 +3,7 @@ import {
   POKEMON_CANCELLED,
   FETCH_POKEMON,
   PokemonType,
-  FetchPokemonFullfilledI,
+  FetchPokemonFulfilledI,
   FetchPokemonCancelledI,
   FetchPokemonI,
 } from './actionTypes';
@@ -15,7 +15,7 @@ export const fetchPokemon = (index: string): FetchPokemonI => ({
 
 export const fetchPokemonFulfilled = (
   data: PokemonType,
-): FetchPokemonFullfilledI => ({
+): FetchPokemonFulfilledI => ({
   type: POKEMON_FULLFILLED,
   payload: data,
 });

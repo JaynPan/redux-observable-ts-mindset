@@ -40,7 +40,7 @@ export interface FetchPokemonCancelledI {
   type: typeof POKEMON_CANCELLED;
 }
 
-export interface FetchPokemonFullfilledI {
+export interface FetchPokemonFulfilledI {
   type: typeof POKEMON_FULLFILLED;
   payload: PokemonType;
 }
@@ -49,4 +49,4 @@ export type PokemonDispatchTypes =
   | FetchPokemonI
   | PokemonLoadingI
   | FetchPokemonCancelledI
-  | FetchPokemonFullfilledI;
+  | FetchPokemonFulfilledI;
